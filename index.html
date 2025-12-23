@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Feliz Navidad 🎄</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(#0b1d3a, #1e3c72);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        overflow: hidden;
+    }
+
+    .card {
+        text-align: center;
+        background: rgba(255,255,255,0.1);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(255,255,255,0.2);
+        width: 360px;
+        position: relative;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+        font-size: 26px;
+    }
+
+    /* Árbol */
+    .tree {
+        width: 0;
+        height: 0;
+        border-left: 80px solid transparent;
+        border-right: 80px solid transparent;
+        border-bottom: 140px solid #1abc9c;
+        margin: 0 auto;
+        cursor: pointer;
+        transition: transform 1s ease;
+        position: relative;
+    }
+
+    .tree::before {
+        content: "";
+        position: absolute;
+        top: 40px;
+        left: -60px;
+        border-left: 60px solid transparent;
+        border-right: 60px solid transparent;
+        border-bottom: 110px solid #16a085;
+    }
+
+    .tree::after {
+        content: "";
+        position: absolute;
+        top: 80px;
+        left: -45px;
+        border-left: 45px solid transparent;
+        border-right: 45px solid transparent;
+        border-bottom: 80px solid #149174;
+    }
+
+    /* Estrella recta */
+    .star {
+        position: absolute;
+        top: -35px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 30px;
+        color: gold;
+        pointer-events: none;
+        text-shadow: 0 0 8px gold;
+    }
+
+    /* Mensaje oculto */
+    .message {
+        margin-top: 25px;
+        opacity: 0;
+        max-height: 0;
+        transition: all 1.5s ease;
+        overflow: hidden;
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .open .tree {
+        transform: scale(0.9) rotateY(180deg);
+    }
+
+    .open .message {
+        opacity: 1;
+        max-height: 300px;
+    }
+
+    /* Nieve */
+    .snow {
+        position: absolute;
+        top: -10px;
+        font-size: 14px;
+        animation: fall linear infinite;
+        color: white;
+        opacity: 0.8;
+        pointer-events: none;
+    }
+
+    @keyframes fall {
+        from {
+            transform: translateY(-10px);
+        }
+        to {
+            transform: translateY(110vh);
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+    <h1>🎄 Feliz Navidad 🎄</h1>
+    <br>
+    <div class="tree" onclick="openTree()">
+        <div class="star">⭐</div>
+    </div>
+
+    <div class="message">
+        <p>
+            Que esta Navidad esté llena de paz, amor y esperanza.  
+            Que cada luz del árbol ilumine tus sueños  
+            y que el nuevo año llegue cargado de bendiciones.
+        </p>
+        <p><strong>✨ ¡Felices Fiestas! ✨</strong></p>
+    </div>
+</div>
+
+<script>
+function openTree() {
+    document.getElementById("card").classList.toggle("open");
+}
+
+// Efecto nieve
+for (let i = 0; i < 40; i++) {
+    let snow = document.createElement("div");
+    snow.className = "snow";
+    snow.innerHTML = "❄";
+    snow.style.left = Math.random() * 100 + "vw";
+    snow.style.animationDuration = (Math.random() * 5 + 5) + "s";
+    snow.style.fontSize = (Math.random() * 10 + 10) + "px";
+    document.body.appendChild(snow);
+}
+</script>
+
+</body>
+</html>
